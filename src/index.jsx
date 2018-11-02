@@ -79,6 +79,7 @@ export default class DatePicker extends React.Component {
     className: PropTypes.string,
     customInput: PropTypes.element,
     customInputRef: PropTypes.string,
+    customInputAfterHtml: PropTypes.string,
     // eslint-disable-next-line react/no-unused-prop-types
     dateFormat: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
     dateFormatCalendar: PropTypes.string,
@@ -641,7 +642,8 @@ export default class DatePicker extends React.Component {
       [outsideClickIgnoreClass]: this.state.open
     });
 
-    const customInput = this.props.customInput || <input type="text" />;
+    let customInput = this.props.customInput || <input type="text" />;
+    customInput = customInput + this.props.customInputAfterHtml;
     const customInputRef = this.props.customInputRef || "ref";
     const inputValue =
       typeof this.props.value === "string"
